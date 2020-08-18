@@ -1,0 +1,48 @@
+#+TITLE: Trait-o-graph
+
+A simple tool to generate circular diagrams that are meant to depict traits of
+real or fictional characters.
+
+* Examples
+#+BEGIN_SRC sh :exports code :results none
+python traitograph.py --labels curious organized energetic friendly confident --values 5 4 3 4 2 --max-value 7 -o examples/example1.png
+#+END_SRC
+
+
+[[./examples/example1.png]]
+
+#+BEGIN_SRC sh :exports code :results none
+python traitograph.py \
+    --labels sanguine phlegmatic choleric melancholic           \
+    --values 5 3 2 4 --max-value 5 -o examples/example2.png     \
+    --dot-size 5 --foreground 255 255 255 --background 46 52 64 \
+    --trait-color 80 130 150 100 --line-spacing 60
+#+END_SRC
+
+[[./examples/example2.png]]
+
+* Requirements
+- Python 3.6+
+- pygame
+
+* Supported image formats
+- bmp (uncompressed)
+- tga (uncompressed)
+- png
+- jpeg
+
+* Command line arguments
+
+| Option            | Short form | Type        | Default         | Description                                     |
+|-------------------+------------+-------------+-----------------+-------------------------------------------------|
+| =--labels=        | =-l=       | list of str |                 | The names of the character traits               |
+| =--values=        | =-v=       | list of int |                 | The values for the character traits             |
+| =--max-value=     | =-m=       | int         |                 | The maximum value for any trait                 |
+| =--out-file=      | =-o=       | str         | =chart.png=     | The file to which the image will be written     |
+| =--foreground=    | =-fg=      | rgb         | =0 0 0=         | The foreground color of the chart               |
+| =--background=    | =-bg=      | rgb         | =255 255 255=   | The background color of the chart               |
+| =--trait-color=   | =-tc=      | rgba        | =0 190 190 100= | The color of the colored part of the chart      |
+| =--outer-padding= | =-op=      | pixel size  | =20=            | The additional padding applied to the chart     |
+| =--line-spacing=  | =-ls=      | pixel size  | =40=            | The distance between the lines                  |
+| =--dot-size=      | =-ds=      | pixel size  | =2=             | The size of the dots                            |
+| =--display=       | =-d=       | bool        | =False=         | If True, additionally show the plot in a window |
